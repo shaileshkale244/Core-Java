@@ -1,4 +1,9 @@
-*./.settings
-*./bin
-*.classpath
-*.project
+/Assignment_1/.settings
+/Assignment_4/.settings
+/Assignment_1/bin
+/Assignment_4/bin
+/Assignment_1/.classpath
+/Assignment_4/.classpath
+/Assignment_1/.project
+/Assignment_4/.project
+
