@@ -5,24 +5,28 @@ public class BankAccount {
 	private int accountid;
 	private String accountholder;
 	private double balance;
-	private static int count=0;
-	
-	
-	public BankAccount(int accountid,String accountholder,double balance) {
-		this.accountid=accountid;
-		this.accountholder=accountholder;
-		this.balance=balance;
-		count++; 
+	private static int count = 0;
+
+	public BankAccount(int accountid, String accountholder, double balance) {
+		this.accountid = accountid;
+		this.accountholder = accountholder;
+		this.balance = balance;
+		count++;
 	}
-	
+
 	public void deposit(double amount) {
-		this.balance+=amount;
+		balance += amount;
 	}
-	
+
 	public void withdraw(double amount) {
-		this.balance-=amount;
+		if (balance >= amount) {
+			balance -= amount;
+		} else {
+			System.out.println("Insufficient funds. Withdrawal failed.");
+		}
+
 	}
-	
+
 	public static int getAccountCount() {
 		return count;
 	}
@@ -56,9 +60,8 @@ public class BankAccount {
 		return "BankAccount [accountid=" + accountid + ", accountholder=" + accountholder + ", balance=" + balance
 				+ "]";
 	}
-	
+
 	public void displayAccountDetails() {
 		System.out.println(this.toString());
 	}
-	
 }
