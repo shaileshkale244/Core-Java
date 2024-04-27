@@ -9,13 +9,13 @@ public class Vehicle {
 	private String chasisNo;
 	private Color color;
 	private double price;
-	private String manufactureDate;
-	private String insuranceExpDate;
+	private Date manufactureDate;
+	private Date insuranceExpDate;
 	private double pollutionLevel;
 	
 	private static int count=0;
 
-	public Vehicle(String chasisNo,Color color,double price,String manufactureDate,String insuranceExpDate) {
+	public Vehicle(String chasisNo,Color color,double price,Date manufactureDate,Date insuranceExpDate) {
 		this.chasisNo=chasisNo;
 		this.color=color;
 		this.price=price;
@@ -49,21 +49,21 @@ public class Vehicle {
 		this.price = price;
 	}
 
-//	public Date getManufactureDate() {
-//		return manufactureDate;
-//	}
-//
-//	public void setManufactureDate(Date manufactureDate) {
-//		this.manufactureDate = manufactureDate;
-//	}
-//
-//	public Date getInsuranceExpDate() {
-//		return insuranceExpDate;
-//	}
-//
-//	public void setInsuranceExpDate(Date insuranceExpDate) {
-//		this.insuranceExpDate = insuranceExpDate;
-//	}
+	public Date getManufactureDate() {
+		return manufactureDate;
+	}
+
+	public void setManufactureDate(Date manufactureDate) {
+		this.manufactureDate = manufactureDate;
+	}
+
+	public Date getInsuranceExpDate() {
+		return insuranceExpDate;
+	}
+
+	public void setInsuranceExpDate(Date insuranceExpDate) {
+		this.insuranceExpDate = insuranceExpDate;
+	}
 
 	public double getPollutionLevel() {
 		return pollutionLevel;
