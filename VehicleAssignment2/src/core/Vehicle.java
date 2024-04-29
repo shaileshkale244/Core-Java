@@ -1,7 +1,8 @@
 package core;
 
-import java.util.Date;
-import static  utils.VehicleValidationRule.sdf;
+
+import java.time.LocalDate;
+
 
 public class Vehicle {
 	
@@ -10,13 +11,13 @@ public class Vehicle {
 	private String chasisNo;
 	private Color color;
 	private double price;
-	private Date manufactureDate;
-	private Date insuranceExpDate;
+	private LocalDate manufactureDate;
+	private LocalDate insuranceExpDate;
 	private double pollutionLevel;
 	
 	private static int count=0;
 
-	public Vehicle(String chasisNo,Color color,double price,Date manufactureDate,Date insuranceExpDate) {
+	public Vehicle(String chasisNo,Color color,double price,LocalDate manufactureDate,LocalDate insuranceExpDate) {
 		this.chasisNo=chasisNo;
 		this.color=color;
 		this.price=price;
@@ -50,19 +51,19 @@ public class Vehicle {
 		this.price = price;
 	}
 
-	public Date getManufactureDate() {
+	public LocalDate getManufactureDate() {
 		return manufactureDate;
 	}
 
-	public void setManufactureDate(Date manufactureDate) {
+	public void setManufactureDate(LocalDate manufactureDate) {
 		this.manufactureDate = manufactureDate;
 	}
 
-	public Date getInsuranceExpDate() {
+	public LocalDate getInsuranceExpDate() {
 		return insuranceExpDate;
 	}
 
-	public void setInsuranceExpDate(Date insuranceExpDate) {
+	public void setInsuranceExpDate(LocalDate insuranceExpDate) {
 		this.insuranceExpDate = insuranceExpDate;
 	}
 
@@ -76,8 +77,8 @@ public class Vehicle {
 
 	@Override
 	public String toString() {
-		return "Vehicle [chasisNo=" + chasisNo + ", color=" + color + ", price=" + price + ", manufactureDate="
-				+ sdf.format(manufactureDate) + ", insuranceExpDate=" + sdf.format(insuranceExpDate) + ", pollutionLevel=" + pollutionLevel
+		return "Vehicle [chasisNo=" + chasisNo + ", color=" + color + ", price=" + price + ",\n manufactureDate="
+				+ manufactureDate + ", insuranceExpDate=" + insuranceExpDate + ", pollutionLevel=" + pollutionLevel
 				+ "]";
 	}
 	

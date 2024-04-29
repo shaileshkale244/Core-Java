@@ -1,17 +1,17 @@
 package utils;
 import static core.Vehicle.getCount;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import java.time.LocalDate;
 import core.Color;
 import core.Vehicle;
-import custom_exception.*;
+import custom_exception.ColorNotSupportedException;
+import custom_exception.DuplicateChasisNumberException;
+import custom_exception.InsuranceExpiryDateException;
+import custom_exception.ManufactureDateException;
+import custom_exception.PollutionLevelException;
 
 public class VehicleValidationRule {
-	
-	public static SimpleDateFormat sdf;
-	static {
-		sdf=new SimpleDateFormat("yyyy-MM-dd");
-	}
+
 	
 	public static String isChasisNoUnique(Vehicle[] arr, String chasisNo)throws DuplicateChasisNumberException  {
 		for( int i=0;i<getCount();i++ ) {
@@ -36,14 +36,14 @@ public class VehicleValidationRule {
 		}
 	}
 	
-	public static Date checkManufacturingDate(Date manfactureDate) throws ManufactureDateException {
-		Date date = new Date();
-		if (date.compareTo(manfactureDate) <= 0)
-			throw new ManufactureDateException("Manufacture date must be smaller than Date: "+sdf.format(date));
+	public static LocalDate checkManufacturingDate(LocalDate manfactureDate) throws ManufactureDateException {
+		
+		if (LocalDate.now().compareTo(manfactureDate) <= 0)
+			throw new ManufactureDateException("Manufacture date must be smaller than Date: "+LocalDate.now());
 		return manfactureDate;
 	}
 	
-	public static Date checkInsuranceExpDate(Date manfactureDate, Date date) throws InsuranceExpiryDateException {
+	public static LocalDate checkInsuranceExpDate(LocalDate manfactureDate, LocalDate date) throws InsuranceExpiryDateException {
 		if (manfactureDate.compareTo(date) > 0)
 			throw new InsuranceExpiryDateException("Insurance Expiry Date must greater than Manufacturing Date!!");
 		return date;

@@ -19,7 +19,6 @@ public class Test {
 			System.out.println("1.Add new vehicle  2.Drive vehicle 3.Display all Vehicles 4.Exit");
 			System.out.println("Enter choice:");
 			try {
-				//int choice = sc.nextInt();
 				switch (sc.nextInt()) {
 				case 1:
 					arr[getCount()] = addVehicle(arr);
@@ -40,7 +39,7 @@ public class Test {
 
 			} catch (Exception e) {
 				 System.out.println(e.getMessage());
-				//e.printStackTrace();
+				
 
 			}
 
