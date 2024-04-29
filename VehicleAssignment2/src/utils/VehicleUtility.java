@@ -53,6 +53,8 @@ public class VehicleUtility {
 					arr[i].setPollutionLevel(km += (km * 0.01));
 					checkPollutionLevel(arr[i]);
 
+				}else {
+					System.out.println("Invalid chasis number!!");
 				}
 			}
 		}
