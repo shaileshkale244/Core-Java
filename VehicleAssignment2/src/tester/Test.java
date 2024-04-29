@@ -6,24 +6,25 @@ import java.util.Scanner;
 import core.Vehicle;
 
 public class Test {
-	@SuppressWarnings("resource")
+
 	public static void main(String[] args) {
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
+
 		Vehicle[] arr = new Vehicle[5];
+		boolean exit = false;
 
-		try {
-			boolean exit = false;
-
-			while (!exit) {
-				System.out.println("--: Vehicle Management System :--");
-				System.out.println("1.Add new vehicle  2.Drive vehicle 3.Display all Vehicles 4.Exit");
-				System.out.println("Enter choice");
-				int choice = sc.nextInt();
-				switch (choice) {
+		while (!exit) {
+			System.out.println("--: Vehicle Management System :--");
+			System.out.println("1.Add new vehicle  2.Drive vehicle 3.Display all Vehicles 4.Exit");
+			System.out.println("Enter choice:");
+			try {
+				//int choice = sc.nextInt();
+				switch (sc.nextInt()) {
 				case 1:
 					arr[getCount()] = addVehicle(arr);
 					break;
-				case 2:					
+				case 2:
 					drive(arr);
 					break;
 				case 3:
@@ -37,9 +38,11 @@ public class Test {
 					break;
 				}
 
+			} catch (Exception e) {
+				 System.out.println(e.getMessage());
+				//e.printStackTrace();
+
 			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
 
 		}
 	}

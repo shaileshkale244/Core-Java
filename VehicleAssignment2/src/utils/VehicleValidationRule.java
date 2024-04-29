@@ -7,8 +7,15 @@ import core.Vehicle;
 import custom_exception.*;
 
 public class VehicleValidationRule {
+	
+	public static SimpleDateFormat sdf;
+	static {
+		sdf=new SimpleDateFormat("yyyy-MM-dd");
+	}
+	
 	public static String isChasisNoUnique(Vehicle[] arr, String chasisNo)throws DuplicateChasisNumberException  {
 		for( int i=0;i<getCount();i++ ) {
+			System.out.println("countin validate"+getCount());
 			if(arr[i].getChasisNo().equals(chasisNo))
 				throw new DuplicateChasisNumberException("Chasis Number Already exist. Enter New Chasis Number!!");
 		}
@@ -32,7 +39,7 @@ public class VehicleValidationRule {
 	public static Date checkManufacturingDate(Date manfactureDate) throws ManufactureDateException {
 		Date date = new Date();
 		if (date.compareTo(manfactureDate) <= 0)
-			throw new ManufactureDateException("Manufacture date must be smaller than Date: "+new SimpleDateFormat("yyyy-MM-dd").format(date));
+			throw new ManufactureDateException("Manufacture date must be smaller than Date: "+sdf.format(date));
 		return manfactureDate;
 	}
 	

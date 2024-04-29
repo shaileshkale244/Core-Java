@@ -1,6 +1,7 @@
 package core;
 
 import java.util.Date;
+import static  utils.VehicleValidationRule.sdf;
 
 public class Vehicle {
 	
@@ -76,7 +77,7 @@ public class Vehicle {
 	@Override
 	public String toString() {
 		return "Vehicle [chasisNo=" + chasisNo + ", color=" + color + ", price=" + price + ", manufactureDate="
-				+ manufactureDate + ", insuranceExpDate=" + insuranceExpDate + ", pollutionLevel=" + pollutionLevel
+				+ sdf.format(manufactureDate) + ", insuranceExpDate=" + sdf.format(insuranceExpDate) + ", pollutionLevel=" + pollutionLevel
 				+ "]";
 	}
 	
