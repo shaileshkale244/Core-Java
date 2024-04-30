@@ -29,22 +29,23 @@ public class VehicleUtility {
 
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Enter Chasis no:");
+		System.out.print("Enter Chasis no:");
 		String chasisno = isChasisNoUnique(arr, sc.next());
 
-		System.out.println("Enter Color(WHITE , SILVER , BLACK , RED , BLUE):");
+		System.out.print("Enter Color(WHITE , SILVER , BLACK , RED , BLUE):");
 		Color clr = checkColor(sc.next().toUpperCase());
 
-		System.out.println("Enter price:");
+		System.out.print("Enter price:");
 		double price = sc.nextDouble();
 
-		System.out.println("Enter manufacturing date(yyyy-MM-dd):");
+		System.out.print("Enter manufacturing date(yyyy-MM-dd):");
 
 		LocalDate manufactureDate = checkManufacturingDate(LocalDate.parse(sc.next()));
 
-		System.out.println("Enter insurance expiry date(yyyy-MM-dd):");
+		System.out.print("Enter insurance expiry date(yyyy-MM-dd):");
 
 		LocalDate insuranceExpDate = checkInsuranceExpDate(manufactureDate, LocalDate.parse(sc.next()));
+		// sc.close();
 		return new Vehicle(chasisno, clr, price, manufactureDate, insuranceExpDate);
 	}
 
@@ -52,11 +53,11 @@ public class VehicleUtility {
 	public static void drive(Vehicle[] arr) throws PollutionLevelException {
 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter vehicle chasis number:");
+		System.out.print("Enter vehicle chasis number:");
 		String chasisNo = sc.next();
 		for (int i = 0; i < getCount(); i++) {
 			if (arr[i].getChasisNo().equals(chasisNo)) {
-				System.out.println("Enter Distance Travelled in Km:");
+				System.out.print("Enter Distance Travelled in Km:");
 				int km = sc.nextInt();
 				arr[i].setPollutionLevel(km += (km * 0.01));
 				checkPollutionLevel(arr[i]);
@@ -65,6 +66,7 @@ public class VehicleUtility {
 				System.out.println("Invalid chasis number!!");
 			}
 		}
+		// sc.close();
 	}
 
 	public static void displayAllVehicles(Vehicle[] arr) {

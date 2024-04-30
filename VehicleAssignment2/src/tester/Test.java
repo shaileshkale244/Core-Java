@@ -8,8 +8,8 @@ import core.Vehicle;
 public class Test {
 
 	public static void main(String[] args) {
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
+//		@SuppressWarnings("resource")
+		try(Scanner sc = new Scanner(System.in)){
 
 		Vehicle[] arr = new Vehicle[5];
 		boolean exit = false;
@@ -39,10 +39,12 @@ public class Test {
 
 			} catch (Exception e) {
 				 System.out.println(e.getMessage());
+				 sc.nextLine();
 				
 
 			}
 
 		}
 	}
+		}
 }
