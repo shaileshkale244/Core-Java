@@ -23,11 +23,9 @@ import custom_exception.PollutionLevelException;
 
 public class VehicleUtility {
 
-	@SuppressWarnings("resource")
-	public static Vehicle addVehicle(Vehicle[] arr) throws ColorNotSupportedException, ParseException,
+	// @SuppressWarnings("resource")
+	public static Vehicle addVehicle(Vehicle[] arr, Scanner sc) throws ColorNotSupportedException, ParseException,
 			InsuranceExpiryDateException, ManufactureDateException, DuplicateChasisNumberException {
-
-		Scanner sc = new Scanner(System.in);
 
 		System.out.print("Enter Chasis no:");
 		String chasisno = isChasisNoUnique(arr, sc.next());
@@ -49,10 +47,9 @@ public class VehicleUtility {
 		return new Vehicle(chasisno, clr, price, manufactureDate, insuranceExpDate);
 	}
 
-	@SuppressWarnings("resource")
-	public static void drive(Vehicle[] arr) throws PollutionLevelException {
+//	@SuppressWarnings("resource")
+	public static void drive(Vehicle[] arr, Scanner sc) throws PollutionLevelException {
 
-		Scanner sc = new Scanner(System.in);
 		System.out.print("Enter vehicle chasis number:");
 		String chasisNo = sc.next();
 		for (int i = 0; i < getCount(); i++) {
@@ -66,7 +63,7 @@ public class VehicleUtility {
 				System.out.println("Invalid chasis number!!");
 			}
 		}
-		// sc.close();
+
 	}
 
 	public static void displayAllVehicles(Vehicle[] arr) {

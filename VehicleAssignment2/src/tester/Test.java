@@ -21,10 +21,10 @@ public class Test {
 			try {
 				switch (sc.nextInt()) {
 				case 1:
-					arr[getCount()] = addVehicle(arr);
+					arr[getCount()] = addVehicle(arr,sc);
 					break;
 				case 2:
-					drive(arr);
+					drive(arr,sc);
 					break;
 				case 3:
 					displayAllVehicles(arr);
