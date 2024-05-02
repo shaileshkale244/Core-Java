@@ -1,5 +1,7 @@
 package com.app.tester;
 
+import java.util.Collections;
+import java.util.Comparator;
 //import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +10,7 @@ import java.util.Scanner;
 import static com.app.utils.CustmerSignupValidation.*;
 import static com.app.utils.CustomerOperationUtilities.*;
 import com.app.cms.Customer;
+import com.app.custom_ordering.DateOfBirthAndLastNameOrder;
 
 public class Test {
 
@@ -20,8 +23,10 @@ public class Test {
 			boolean exit = false;
 			while (!exit) {
 				System.out.println("\n\t Customer Management System");
-				System.out.println(
-						"1.SignUp \n2.SignIn \n3.Change Password \n4.Unsubscribe \n5.Display All Customers \n6.Display Planwise Subscribers \n7.Display Sorted List(Registration Amount Wise) \n0.Exit");
+				System.out.println("1.SignUp \n2.SignIn \n3.Change Password \n4.Unsubscribe "
+						+ "\n5.Display All Customers \n6.Display Planwise Subscribers "
+						+ "\n7.Display Sorted List(Natural Sorting Email) " + "\n8.Display sorted List(dob n lname)"
+						+ "\n9.Remove customers from specified plan n born after specified date" + "\n0.Exit");
 				System.out.println("Enter choice");
 
 				try {
@@ -64,7 +69,33 @@ public class Test {
 						displayDetailsPlanWise(sc.next(), customer);
 						break;
 					case 7:
-						displaySortedDetails(customer);
+						Collections.sort(customer);
+						for (Customer c : customer)
+							System.out.println(c);
+						break;
+					case 8:
+						//anonymous class
+//						Collections.sort(customer, new Comparator<Customer>() {
+//
+//							@Override
+//							public int compare(Customer o1, Customer o2) {
+//								if(o1.getDob().compareTo(o2.getDob())==0) {
+//									return o1.getLname().compareTo(o2.getLname());
+//								}
+//								return o1.getDob().compareTo(o2.getDob());
+//							}
+//						}.reversed());
+						
+						
+						Collections.sort(customer, new DateOfBirthAndLastNameOrder().reversed());
+						
+						break;
+					case 9:
+						
+						System.out.println("Enter date Name and plan");
+						removeCustomerPlanBornAfterDate(sc.next(), sc.next(), customer);
+						
+
 						break;
 					case 0:
 						System.out.println("Thank you");

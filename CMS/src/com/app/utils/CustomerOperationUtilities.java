@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
-
+import static com.app.utils.CustmerSignupValidation.*;
 import com.app.cms.Customer;
 import com.app.cms.ServicePlan;
 import com.app.custom_exception.CustomerException;
+import com.app.custom_exception.CustomerRegistrationException;
 
 public class CustomerOperationUtilities {
 
@@ -56,6 +58,21 @@ public class CustomerOperationUtilities {
 			throw new CustomerException(" Invalid customer Email !!!!");
 		}
 	}
+	
+	
+	// Removing customer from plan born after specified date
+	public static void removeCustomerPlanBornAfterDate(String date,String plan,List<Customer> customer) throws CustomerRegistrationException {
+		ServicePlan selectedPlan = validateAndParsePlan(plan);
+		Iterator<Customer> itr = customer.iterator();
+		while(itr.hasNext()) {
+			Customer cust = itr.next();
+			if(selectedPlan==cust.getPlan()) {
+				if(cust.getDob().isAfter(LocalDate.parse(date)))
+					itr.remove();
+			}
+		}
+	}
+	
 
 	// display names of all customers having specific type of plan
 	public static void displayDetailsPlanWise(String plan, List<Customer> customer) {
@@ -66,7 +83,7 @@ public class CustomerOperationUtilities {
 		}
 	}
 
-	// sorting the customer list
+	// sorting the customer list according to registration amount
 	public static void displaySortedDetails(List<Customer> customer) {
 		Collections.sort(customer, Comparator.comparing(Customer::getRegistrationAmount));
 		// reversed ordered list by the lastname
@@ -110,6 +127,8 @@ public class CustomerOperationUtilities {
 		customers.add(new Customer("Amanda", "Young", "amanda.young@example.com", "Pass@word14", 2000,
 				LocalDate.of(1993, 6, 5), ServicePlan.GOLD));
 		customers.add(new Customer("Andrew", "King", "andrew.king@example.com", "Pass@word15", 10000,
+				LocalDate.of(1979, 4, 20), ServicePlan.PLATINUM));
+		customers.add(new Customer("Andrew", "Lsings", "andrew1.king@example.com", "Pass@word15", 10000,
 				LocalDate.of(1979, 4, 20), ServicePlan.PLATINUM));
 
 		return customers;
