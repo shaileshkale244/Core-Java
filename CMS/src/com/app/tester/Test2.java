@@ -9,7 +9,7 @@ import static com.app.utils.CustmerSignupValidation.*;
 import static com.app.utils.CustomerOperationUtilities.*;
 import com.app.cms.Customer;
 
-public class Test {
+public class Test2 {
 
 	public static void main(String[] args) {
 
@@ -20,8 +20,10 @@ public class Test {
 			boolean exit = false;
 			while (!exit) {
 				System.out.println("\n\t Customer Management System");
-				System.out.println(
-						"1.SignUp \n2.SignIn \n3.Change Password \n4.Unsubscribe \n5.Display All Customers \n6.Display Planwise Subscribers \n7.Display Sorted List(Registration Amount Wise) \n0.Exit");
+				System.out
+						.println("1.SignUp \n2.SignIn \n3.Display Sorted listaccording to email (natural ordering)  \n"
+								+ "4.Display Sorted details according to DoB And LastName \n"
+								+ "5.Remove the plan customers \n0.Exit");
 				System.out.println("Enter choice");
 
 				try {
@@ -36,34 +38,25 @@ public class Test {
 					case 2:
 						System.out.println("Enter Email And Password :");
 						cust = customerSignIn(sc.next(), sc.next(), customer);
-						System.out.println("Login Successful!!");
+						System.out.println("Login Successful!!" + cust);
 						break;
 					case 3:
-						if (cust != null) {
-							System.out.println("Enter Old Password :");
-							String oldpass = sc.next();
-							System.out.println("Enter New Password :");
-							String newpass = sc.next();
-							changePassword(cust, oldpass, newpass, customer);
-						}
+						displaySortedEmails(customer);
 						break;
 					case 4:
-						if (cust != null) {
-
-							// System.out.println("Unsubscribed : "+unsubscribePlan(cust,customer));
-							System.out.println("Enter Email to unsubscribe Customer:");
-							unsubscribeUserPlan(sc.next(), customer);
-						}
+						displaySortedOnBirthdateAndLastName(customer);
 						break;
 					case 5:
-						displayDetails(customer);
+						System.out
+								.println("Remove customers born after the selected date from the selected plan -----");
+						System.out.println("Enter Plan Name And Date:");
+						removeCustomerPlanAndBirthdateWise(customer, sc.next(), sc.next());
 						break;
 					case 6:
-						System.out.println("Enter Plan Name:");
-						displayDetailsPlanWise(sc.next(), customer);
+						displayDetails(customer);
 						break;
 					case 7:
-						displaySortedDetails(customer);
+
 						break;
 					case 0:
 						System.out.println("Thank you");

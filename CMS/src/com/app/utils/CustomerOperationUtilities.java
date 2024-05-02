@@ -4,11 +4,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
+import static com.app.utils.CustmerSignupValidation.*;
 
 import com.app.cms.Customer;
 import com.app.cms.ServicePlan;
 import com.app.custom_exception.CustomerException;
+import com.app.custom_exception.CustomerRegistrationException;
 
 public class CustomerOperationUtilities {
 
@@ -23,6 +26,12 @@ public class CustomerOperationUtilities {
 		} catch (IndexOutOfBoundsException e) {
 			throw new CustomerException("Incorrect credentials ! Please try again!!");
 		}
+	}
+
+	// display details of customers
+	public static void displayDetails(List<Customer> customer) {
+		for (Customer c : customer)
+			System.out.println(c);
 	}
 
 	// changing the password of customer if signed in
@@ -77,6 +86,43 @@ public class CustomerOperationUtilities {
 			System.out.println(c);
 	}
 
+	// Display customer details sorted as per the email (asc) : using natural
+	// ordering
+	public static void displaySortedEmails(List<Customer> customer) {
+		Collections.sort(customer);
+		displayDetails(customer);
+	}
+
+	// Display customer details sorted as per the dob n last name : using custom
+	// ordering , using anonymous inner class.
+	public static void displaySortedOnBirthdateAndLastName(List<Customer> customer) {
+		Collections.sort(customer, new Comparator<Customer>() {
+
+			@Override
+			public int compare(Customer o1, Customer o2) {
+				if (o1.getDob().compareTo(o2.getDob()) == 0)
+					return o1.getLname().compareTo(o2.getLname());
+				return o1.getDob().compareTo(o2.getDob());
+			}
+		});
+		displayDetails(customer);
+	}
+
+	// remove all customers under a provided plan and born after specified date
+	public static void removeCustomerPlanAndBirthdateWise(List<Customer> customer, String plan, String date)
+			throws CustomerRegistrationException {
+		ServicePlan selctedPlan = validateAndParsePlan(plan);
+		Iterator<Customer> itr = customer.iterator();
+		while (itr.hasNext()) {
+			Customer cust = itr.next();
+			if (selctedPlan == cust.getPlan())
+				if (cust.getDob().isAfter(LocalDate.parse(date))) {
+					System.out.println(selctedPlan == cust.getPlan());
+					itr.remove();
+				}
+		}
+	}
+
 	// populating the customer list
 	public static List<Customer> populate() {
 		List<Customer> customers = new ArrayList<>();
@@ -111,6 +157,8 @@ public class CustomerOperationUtilities {
 				LocalDate.of(1993, 6, 5), ServicePlan.GOLD));
 		customers.add(new Customer("Andrew", "King", "andrew.king@example.com", "Pass@word15", 10000,
 				LocalDate.of(1979, 4, 20), ServicePlan.PLATINUM));
+		customers.add(new Customer("John", "Doe", "johny.doe@example.com", "Pass@word1", 1000,
+				LocalDate.of(1990, 5, 15), ServicePlan.SILVER));
 
 		return customers;
 	}

@@ -2,7 +2,7 @@ package com.app.cms;
 
 import java.time.LocalDate;
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
 	private static int counter;
 	static {
 		counter = 1000;
@@ -107,6 +107,11 @@ public class Customer {
 			return this.email.equals(((Customer) o).email);
 		}
 		return false;
+	}
+
+	@Override
+	public int compareTo(Customer o) {
+		return (this.email.compareTo(o.email));
 	}
 
 }
