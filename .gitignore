@@ -12,3 +12,8 @@ AssignmentUpto4/bin/
 VehicleAssignment2/bin/
 .classpath
 .project
+# Ignore .settings folders in every subdirectory
+.settings/
+
+# Ignore bin folders in every subdirectory
+bin/
