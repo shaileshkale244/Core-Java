@@ -117,7 +117,7 @@ public class CustomerOperationUtilities {
 			Customer cust = itr.next();
 			if (selctedPlan == cust.getPlan())
 				if (cust.getDob().isAfter(LocalDate.parse(date))) {
-					System.out.println(selctedPlan == cust.getPlan());
+					//System.out.println(selctedPlan == cust.getPlan());
 					itr.remove();
 				}
 		}

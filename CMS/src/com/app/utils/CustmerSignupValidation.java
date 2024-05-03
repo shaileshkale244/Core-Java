@@ -1,6 +1,7 @@
 package com.app.utils;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 import com.app.cms.Customer;
@@ -15,7 +16,7 @@ public class CustmerSignupValidation {
 			throws CustomerRegistrationException {
 		isValidEmail(email);
 		validateEmailUniqueness(customers, email);
-		LocalDate dateOfBirth = LocalDate.parse(dob);
+		LocalDate dateOfBirth = validateCustomerAge(LocalDate.parse(dob));
 		ServicePlan servicePlan = validateAndParsePlan(plan);
 		validateRegistrationCharges(servicePlan, registrationAmount);
 		return new Customer(firstName, lastName, email, password, registrationAmount, dateOfBirth, servicePlan);
@@ -50,6 +51,13 @@ public class CustmerSignupValidation {
 		if (registrationAmount != plan.getRegAmt()) {
 			throw new CustomerRegistrationException("Invalid registration amount for the selected plan: " + plan);
 		}
+	}
+
+	// validating the age of customer not be minor
+	public static LocalDate validateCustomerAge(LocalDate dob) throws CustomerRegistrationException {
+		if (Period.between(dob, LocalDate.now()).getYears() >= 21)
+			return dob;
+		throw new CustomerRegistrationException("Age not valid");
 	}
 
 	// Validating the password format
