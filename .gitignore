@@ -4,8 +4,6 @@ AssignmentUpto4/.settings/
 Exception_Handling/.settings/
 VehicleAssignment2/.settings/
 FruitBasket/.settings/
-CMS/.settings/
-CMS/bin/
 Assignment_1/bin/
 Assignment_4/bin/
 Exception_Handling/bin/
@@ -14,5 +12,8 @@ AssignmentUpto4/bin/
 VehicleAssignment2/bin/
 .classpath
 .project
+# Ignore .settings folders in every subdirectory
 .settings/
+
+# Ignore bin folders in every subdirectory
 bin/
