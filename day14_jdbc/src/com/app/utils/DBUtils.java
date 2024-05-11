@@ -8,9 +8,9 @@ public class DBUtils {
 	private static final String USER_NAME;
 	private static final String PASSWORD;
 	static {
-		DB_URL = "jdbc:mysql://localhost:3306/jdbc24";
+		DB_URL = "jdbc:mysql://localhost:3306/iacsd_mar24";
 		USER_NAME = "root";
-		PASSWORD = "root123";
+		PASSWORD = "root";
 	}
 
 	public static Connection openConnection() 

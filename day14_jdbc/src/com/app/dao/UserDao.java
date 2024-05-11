@@ -17,4 +17,7 @@ public interface UserDao {
 	
 	void updateStatus(int id) throws SQLException;
 	
+	//add method to delete user
+		String deleteVoter(int id)throws SQLException;
+	
 }
