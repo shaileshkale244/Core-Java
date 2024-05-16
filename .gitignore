@@ -7,6 +7,7 @@ FruitBasket/.settings/
 CMS/.settings/
 CMS_HashMap/.settings/
 day14_jdbc/.settings/
+OnlineVotingApp/.settings/
 day14_jdbc/bin/
 CMS/bin/
 Assignment_1/bin/
@@ -16,5 +17,8 @@ FruitBasket/bin/
 AssignmentUpto4/bin/
 VehicleAssignment2/bin/
 CMS_HashMap/bin/
+OnlineVotingApp/build/
+WEB-INF/
+META-INF/
 .classpath
 .project
