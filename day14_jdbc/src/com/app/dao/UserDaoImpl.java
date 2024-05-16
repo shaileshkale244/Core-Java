@@ -11,25 +11,16 @@ import com.app.entities.User;
 public class UserDaoImpl implements UserDao {
 	// state
 	private Connection cn;
-	private PreparedStatement pst1, pst2, pst3,pst4;
+	private PreparedStatement pst1, pst2, pst3,pst4,pst5;
 
 	// def ctor of the DAO layer
-	public UserDaoImpl() throws SQLException {
-		// get cn from db utils
-		cn = openConnection();
-		// pst1 : sign in
+	public UserDaoImpl() throws SQLException {	
+		cn = openConnection();	
 		pst1 = cn.prepareStatement("select * from users where email=? and password=?");
-		// pst2 : get user details
-		pst2 = cn.prepareStatement("select * from users where role='voter' and dob between ? and ?");
-		// pst3 : voter reg
-		/*
-		 * id | first_name | last_name | email | password | 
-		 * dob | status | role
-		 */
+				pst2 = cn.prepareStatement("select * from users where role='voter' and dob between ? and ?");
 		pst3 = cn.prepareStatement("insert into users values(default,?,?,?,?,?,?,?)");
-		System.out.println("user dao created...");
-		
-		pst4 = cn.prepareStatement("update users set status=1 where id=?");
+				pst4 = cn.prepareStatement("update users set status=1 where id=?");
+				pst5 = cn.prepareStatement("delete from users where id =? and role='voter'");
 	}
 
 	@Override
@@ -94,6 +85,15 @@ public class UserDaoImpl implements UserDao {
 		pst4.executeUpdate();	
 		
 	}
+	
+	//remove voter
+	@Override
+	public String deleteVoter(int id) throws SQLException {
+		pst5.setInt(1, id);
+		if(pst5.executeUpdate()==1)
+			return "Voter Removed";
+		return "Voter not found !!";
+	}
 
 	// add clean up method to close DB resources
 		public void cleanUp() throws SQLException {
@@ -106,6 +106,8 @@ public class UserDaoImpl implements UserDao {
 				pst3.close();
 			if (pst4 != null)
 				pst4.close();
+			if (pst5 != null)
+				pst5.close();
 			closeConnection();
 		}
 }
